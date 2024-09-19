@@ -1,0 +1,17 @@
+{
+  "name": "@devank75/medium-common",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@devank75/medium-common": "file:",
+    "common": "file:",
+    "zod": "^3.23.8"
+  }
+}

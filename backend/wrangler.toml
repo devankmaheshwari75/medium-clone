@@ -20,3 +20,7 @@ compatibility_flags = [ "nodejs_compat" ]
 
 # [ai]
 # binding = "AI"
+
+[vars]
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiZjczOWVjN2MtN2I1YS00MjgwLWIxM2MtMmE3MjU5N2VmMGIwIiwidGVuYW50X2lkIjoiZGQwZjg4MTE0YjQ5Yjg5OWZiNjczY2E2ZTUwNDRiNDQ3N2ZlMTdjMGRlZjgxMDk4OTI2ZjQyZGVlNjM1OWRiYyIsImludGVybmFsX3NlY3JldCI6ImIwYjNjZmViLWE1OWYtNDgzMy1hYzliLTYwYTY1NTJjZmYxOSJ9.FwQDXqeGcM0q_28UL_kbD7PKBaxENdDm6N2KaG5NGnU"
+JWT_SECRET="mysercdfhoehfoqiahcajhfoauehfjlacbkuafh"

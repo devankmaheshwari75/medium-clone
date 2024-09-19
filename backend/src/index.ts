@@ -1,33 +1,32 @@
 import { Hono } from 'hono'
+import { PrismaClient } from '@prisma/client/edge'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
-const app = new Hono()
+import { decode, sign, verify } from 'hono/jwt'
+import { userRouter } from './routes/user'
+import { blogRouter } from './routes/blog'
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
+const app = new Hono<{
+  Bindings: {
+    DATABASE_URL: string,
+    JWT_SECRET: string
+  }
+}>();
+
+
+app.route("/api/v1/user", userRouter);
+app.route("/api/v1/blog", blogRouter);
+
+
+
+
+
+
+app.get("/", async (c) => {
+  return c.text("welcome to the backend ");
 })
 
-app.post("/api/v1/signup" , (c) =>{
-  return c.text("hi signup route")
-})
-app.post("/api/v1/signin" , (c) =>{
-  return c.text("hi signin route")
-})
 
 
-app.post("/api/v1/blog" , (c) =>{
-  return c.text("hi from blog royte ")
-})
-
-app.put("/api/v1/blog" , (c)=>{
-  return c.text("hey from put route ");
-})
-app.get("/api/v1/blog/:id" , (c)=>{
-
-  const id  = c.req.param("id");
-  console.log(id);
-  return c.text(`id is ${id}`);
-
-  
-})
 
 export default app
