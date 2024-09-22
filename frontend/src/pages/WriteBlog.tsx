@@ -2,6 +2,7 @@ import { useState } from "react"
 import { AppBar } from "../components/AppBar"
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
+import { useNavigate } from "react-router-dom";
 
 
 export const Writeblog = () => {
@@ -9,6 +10,7 @@ export const Writeblog = () => {
 
     const [title, setTitle] = useState("")
     const [story, setStory] = useState("")
+const navigate  = useNavigate();
 
 
     const publishHandler = async () => {
@@ -21,9 +23,11 @@ export const Writeblog = () => {
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             });
-            console.log(response);
-            setTitle("");
-            setStory("");
+            if (response.status === 200) {  
+                setTitle("");  
+                setStory("");  
+                navigate("/blogs");  
+            }  
         } catch (error) {
             console.error("Error publishing the blog:", error);
             // Optionally display an error message to the user  

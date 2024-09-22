@@ -1,12 +1,12 @@
 import logo from "../assets/logo.png";
 import { BsPencilSquare } from "react-icons/bs";
 
-import { useNavigate ,useLocation } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 export const AppBar = () => {
 
     const navigate  = useNavigate();
-    const location   = useLocation();
+  
 
 
     const signoutHandler = ()=>{
