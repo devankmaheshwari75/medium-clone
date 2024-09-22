@@ -21,6 +21,8 @@ export const userRouter = new Hono<{
     }).$extends(withAccelerate())
   
     const body = await c.req.json();
+    console.log(body.name);
+
     const {success} = signupInput.safeParse(body);
     if(!success){
       c.status(411);
@@ -64,7 +66,7 @@ export const userRouter = new Hono<{
   
   })
   
-  userRouter.post("/getall" , async(c)=>{
+  userRouter.get("/getall" , async(c)=>{
     const prisma  = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());

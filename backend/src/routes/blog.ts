@@ -28,6 +28,7 @@ blogRouter.use("/*", async (c, next) => {
     const user = await verify(token, c.env.JWT_SECRET);
     if (user) {
         c.set("userId", user.id as string);
+        console.log("user is correct")
         await next();
 
     }
@@ -73,7 +74,8 @@ blogRouter.post("/", async (c) => {
 
 
     return c.json({
-        id: post.id
+        id: post.id,
+        post
     })
 
 
@@ -185,6 +187,39 @@ blogRouter.get("/:id", async (c) => {
 
 
 
+
+})
+
+
+blogRouter.delete("/:id", async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+
+    const id = c.req.param("id");
+    try{
+        const deletedpost = await prisma.post.delete({
+            where: {
+                id: id
+            }
+        })
+    
+    
+        console.log(deletedpost);
+        c.status(200);
+        return c.json({
+            message : "post deleted successfully"
+        })
+    
+    }
+
+    catch(e){
+        c.status(404);
+        return c.json({
+            error : e
+            })
+    }
 
 })
 
