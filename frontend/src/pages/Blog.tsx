@@ -1,14 +1,24 @@
 import { AppBar } from "../components/AppBar"
 import { CardComponent } from "../components/CardComponent"
 import { useBlogs } from "../hooks/useBlogs";
+import { Link } from "react-router-dom"
+import { Skeleton } from "../components/Skeleton";
 
 export const Blog = () => {
 
-  const {loading , blogs}  = useBlogs();
+  const { loading, blogs } = useBlogs();
 
-  if(loading){
+  if (loading) {
     return <div>
-      loading
+
+      <AppBar />
+
+      <div >
+
+        <Skeleton />
+
+      </div>
+
     </div>
   }
 
@@ -22,13 +32,20 @@ export const Blog = () => {
 
 
           {
-            blogs.map((blog)=>{
-              return <CardComponent  title={blog.title} content={blog.content} authorName={blog.author.name || "Anonymous"} publishedDate={blog.publishedDate}  />
+            blogs.map((blog) => {
+              return <Link to={`/blog/${blog.id}`} key={blog.id}>
+                <CardComponent
+                  title={blog.title}
+                  content={blog.content}
+                  authorName={blog.author.name || "Anonymous"}
+                  publishedDate={blog.publishedDate}
+                />
+              </Link>
             })
           }
-          
-          
-         
+
+
+
 
         </div>
 

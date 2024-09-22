@@ -36,17 +36,17 @@ export const CardComponent = ({ authorName, title, content, publishedDate }: Blo
             </div>  
 
             <div className="text-mf font-light pt-1">  
-                {content.length > 100 ? content.slice(0, 100) + "..." : content}  
+                {content.length > 100 ? content.slice(0, 150) + "..." : content}  
             </div>  
 
             <div className="text-mf font-normal pt-2">  
-                {`${Math.ceil(content.length / 300)} minute(s) read`}  
+                {`${Math.ceil(content.length / 600)} minute(s) read`}  
             </div>  
         </div>  
     );  
 }  
 
-function Avatar({ authorName }: { authorName: string }) {  
+ function Avatar({ authorName }: { authorName: string }) {  
     // Ensure authorName has at least one character to prevent accessing undefined[0]  
     const displayName = authorName && authorName.length > 0 ? authorName[0] : "D"; // Default character if authorName is empty  
     return (  
