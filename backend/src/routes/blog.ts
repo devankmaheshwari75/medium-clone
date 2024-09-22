@@ -4,10 +4,7 @@ import { withAccelerate } from '@prisma/extension-accelerate'
 
 import { decode, sign, verify } from 'hono/jwt'
 
-import { createBlogInput,updateBlogInput} from "@devank75/medium-common"
-
-
-
+import { createBlogInput, updateBlogInput } from "@devank75/medium-common"
 export const blogRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string,
@@ -56,13 +53,13 @@ blogRouter.post("/", async (c) => {
 
 
     const body = await c.req.json();
-    const {success} = createBlogInput.safeParse(body);
-    if(!success){
+    const { success } = createBlogInput.safeParse(body);
+    if (!success) {
         c.status(411);
         return c.json({
-          message  : "Incorrect  Inputs"
+            message: "Incorrect  Inputs"
         })
-      }
+    }
     const post = await prisma.post.create({
         data: {
             title: body.title,
@@ -98,15 +95,15 @@ blogRouter.put("/", async (c) => {
 
 
     const body = await c.req.json();
-    const {success} = updateBlogInput.safeParse(body);
+    const { success } = updateBlogInput.safeParse(body);
 
 
-    if(!success){
+    if (!success) {
         c.status(411);
         return c.json({
-          message  : "Incorrect  Inputs"
+            message: "Incorrect  Inputs"
         })
-      }
+    }
 
     const post = await prisma.post.update({
         where: {
@@ -129,24 +126,32 @@ blogRouter.put("/", async (c) => {
 
 
 blogRouter.get("/bulk", async (c) => {
-
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
 
-
-
     const posts = await prisma.post.findMany({
-
+        select: {
+            content: true,
+            title: true,
+            id: true,
+            publishedDate: true,
+            author: {
+                select: {
+                    name: true
+                }
+            }
+        },
+        orderBy: {
+            publishedDate: 'desc' // Sort by publishedDate in descending order  
+        }
     });
+
     return c.json({
-        message: "posts fetchedd successfully",
-
+        message: "posts fetched successfully",
         posts: posts
-    })
-
-
-})
+    });
+});
 blogRouter.get("/:id", async (c) => {
 
 
