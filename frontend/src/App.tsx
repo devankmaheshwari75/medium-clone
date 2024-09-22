@@ -2,33 +2,28 @@
 
 import './App.css'
 
-import { BrowserRouter , Routes , Route } from 'react-router-dom'
-import{ Signup} from './pages/Signup'
-import {Signin} from './pages/Signin'
-import {Blog} from './pages/Blog'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Signup } from './pages/Signup'
+import { Signin } from './pages/Signin'
+import { Blog } from './pages/Blog'
 import { Writeblog } from './pages/WriteBlog'
 import { FullBlog } from './pages/FullBlog'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
- 
+
 
   return (
     <>
-    <BrowserRouter>
-
-    <Routes>
-      <Route path = "/signup" element={<Signup/>}></Route>
-      <Route path = "/signin" element={<Signin/>}></Route>
-      <Route path = "/blogs/" element={<Blog/>}></Route>
-      <Route path = "/writeblog" element={<Writeblog/>}></Route>
-      <Route path = "/blog/:id" element={<FullBlog/>}></Route>
-
-      
-    </Routes>
-    
-    
-    
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/blogs" element={<ProtectedRoute element={<Blog />} />} />
+          <Route path="/writeblog" element={<ProtectedRoute element={<Writeblog />} />} />
+          <Route path="/blog/:id" element={<ProtectedRoute element={<FullBlog />} />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
