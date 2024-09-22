@@ -53,16 +53,4 @@ Once authenticated, you can start creating and reading blog posts.
 Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests for any improvements or features you'd like to add.
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Acknowledgements
-React
-Tailwind CSS
-Cloudflare Workers
-Zod
-Prisma
-PostgreSQL
-Feel free to customize this section based on your project's unique characteristics and add any additional sections or information.
-
 
