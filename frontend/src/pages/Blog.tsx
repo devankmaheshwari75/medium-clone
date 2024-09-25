@@ -20,8 +20,8 @@ export const Blog = () => {
     return (
       <div>
         <AppBar />
-        <div className="">
-          <div className="mx-auto">
+        <div >
+          <div >
             <Skeleton />
           </div>
         </div>
@@ -32,7 +32,7 @@ export const Blog = () => {
   return (
     <div>
       <AppBar />
-      <div className="flex justify-center py-4">
+      <div className="flex justify-center py-4 ">
         <div className="flex justify-center max-w-xl flex-col">
           {filteredBlogs.length > 0 ? (
             filteredBlogs.map((blog) => (

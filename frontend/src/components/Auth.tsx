@@ -3,9 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { SignupInput } from "@devank75/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "../../config.ts";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { fullName } from "../store/atoms/fullName.tsx";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
     const navigate = useNavigate();
+    const [userName , setUserName]  = useRecoilState(fullName);
+
+    
     const [userInputs, setuserInputs] = useState<SignupInput>({
         name: "",
         email: "",
@@ -35,7 +40,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                     </div>
                     <div className="text-slate-500">
                         {type === "signin" ? "Don't have an account?" : "Already have an account?" }
-                        <Link className="pl-2 underline" to={type === "signin" ? "/" : "/signin"}>
+                        <Link className="pl-2 underline" to={type === "signin" ? "/signup" : "/"}>
                             {type === "signin" ? "Sign up" : "Sign in"}
                         </Link>
                     </div>
@@ -46,12 +51,19 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                             ...userInputs,
                             name: e.target.value
                         })
+
+                        
+
+
                     }} /> : null}
                     <LabelledInput label="Username" id= "username" placeholder="example@example.com" onChange={(e) => {
                         setuserInputs({
                             ...userInputs,
                             email: e.target.value
                         })
+
+                        setUserName(e.target.value);
+                        console.log(userName)
                     }} />
                     <LabelledInput label="Password" id = "password" type={"password"} placeholder="*******" onChange={(e) => {
                         setuserInputs({

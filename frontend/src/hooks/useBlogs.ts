@@ -32,7 +32,7 @@ export const useBlogs = () => {
                     }
                 });
 
-                console.log(response);
+                
 
                 setBlogs(response.data.posts);
                 setLoading(false);

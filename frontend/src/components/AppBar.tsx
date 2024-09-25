@@ -1,15 +1,23 @@
 import logo from "../assets/logo.png";
 import { BsPencilSquare } from "react-icons/bs";
 import { useRecoilState } from "recoil";
-import {searchQuery} from "../store/atoms/searchquery"
+import { searchQuery } from "../store/atoms/searchquery"
 
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "./Avatar";
+import { useRecoilValue } from "recoil";
+import { fullName } from "../store/atoms/fullName";
+
+
+
 
 
 export const AppBar = () => {
 
+    const userName = useRecoilValue(fullName) || "A";
 
-    const [query ,setQuery] = useRecoilState(searchQuery);
+
+    const [query, setQuery] = useRecoilState(searchQuery);
 
 
 
@@ -19,7 +27,7 @@ export const AppBar = () => {
 
     const signoutHandler = () => {
         localStorage.removeItem('token');
-        navigate("/signin");
+        navigate("/");
 
 
     }
@@ -45,14 +53,14 @@ export const AppBar = () => {
                     }} src={logo} alt="" />
                     <input
 
-                    onChange={(e)=>{
-                        setQuery(e.target.value);
+                        onChange={(e) => {
+                            setQuery(e.target.value);
 
-                        console.log(query);
+                            console.log(query);
 
 
 
-                    }}
+                        }}
                         type="search"
                         name="search"
                         placeholder="Search"
@@ -74,7 +82,15 @@ export const AppBar = () => {
                     <button onClick={signoutHandler} className="text-gray-900 hover:text-gray-950 px-5 py-2.5 text-center me-2 mb-2 border-transparent hover:border-gray-500 transition duration-300">
                         Signout
                     </button>
-                    <div className="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center text-white font-semibold">DM</div>
+                    <div className="mb-1.5 ">
+                        <div className="flex items-center justify-center w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <span className="font-medium text-gray-600 dark:text-gray-300 leading-none mb-1">
+                                {userName[0].toUpperCase()}
+                            </span>
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>

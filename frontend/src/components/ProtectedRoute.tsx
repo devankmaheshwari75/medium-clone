@@ -9,7 +9,7 @@ const ProtectedRoute :  React.FC<ProtectedRouteProps> = ({ element }) => {
   // Check if the token exists in local storage  
   const token = localStorage.getItem('token');  
 
-  return token ? element : <Navigate to="/signin" />;  
+  return token ? element : <Navigate to="/" />;  
 };  
 
 export default ProtectedRoute;  
