@@ -9,6 +9,7 @@ import { Blog } from './pages/Blog'
 import { Writeblog } from './pages/WriteBlog'
 import { FullBlog } from './pages/FullBlog'
 import ProtectedRoute from './components/ProtectedRoute'
+import { MyBlogs } from './pages/MyBlogs'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/blogs" element={<ProtectedRoute element={<Blog />} />} />
           <Route path="/writeblog" element={<ProtectedRoute element={<Writeblog />} />} />
           <Route path="/blog/:id" element={<ProtectedRoute element={<FullBlog />} />} />
+          <Route path="/myblogs/" element  = {<ProtectedRoute element={<MyBlogs />} />} />
         </Routes>
       </BrowserRouter>
     </>
