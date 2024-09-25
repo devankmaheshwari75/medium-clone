@@ -4,16 +4,18 @@ import { BACKEND_URL } from "../../config";
 
 
 
-interface Blog{
+interface Blog {
     id: string,
     title: string,
     content: string,
-    publishedDate :Date
+    publishedDate: Date
     author: {
-        name : string
+        name: string
     }
 }
 export const useBlogs = () => {
+
+
 
     const [loading, setLoading] = useState(true);
     const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -23,22 +25,17 @@ export const useBlogs = () => {
         const getBlogs = async () => {
             try {
 
-                const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk` , {
-                    headers :{
-                        "Authorization" : "Bearer" + " " +localStorage.getItem("token")
+                const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+                    headers: {
+                        "Authorization": "Bearer" + " " + localStorage.getItem("token")
 
                     }
                 });
 
                 console.log(response);
-                
-
-
 
                 setBlogs(response.data.posts);
                 setLoading(false);
-
-
             }
 
             catch (e) {
@@ -49,15 +46,13 @@ export const useBlogs = () => {
 
         getBlogs();
 
-   
-
-
 
 
     }, [])
 
+
     return {
         loading,
-        blogs
+        blogs 
     }
 }

@@ -1,5 +1,5 @@
 
-
+import { RecoilRoot } from 'recoil'
 import './App.css'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -15,7 +15,9 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+
+    <RecoilRoot>
+    <BrowserRouter>
         <Routes>
           <Route path="/" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
@@ -24,6 +26,9 @@ function App() {
           <Route path="/blog/:id" element={<ProtectedRoute element={<FullBlog />} />} />
         </Routes>
       </BrowserRouter>
+
+    </RecoilRoot>
+      
     </>
   )
 }

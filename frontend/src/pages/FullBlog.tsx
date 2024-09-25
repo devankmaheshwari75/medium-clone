@@ -57,7 +57,7 @@ export const FullBlog = () => {
                     <div className="col-span-8">
                         <div className="text-5xl font-extrabold">{blog.title}</div>
                         <div className="py-5 text-gray-500">{formattedDate}</div>
-                        <div className="pt-3 h-screen justified">{blog.content}</div>
+                        <div className="pt-3 h-screen justified whitespace-pre-wrap">{blog.content}</div>
                     </div>
                     <div className="col-span-4">
                         <div className="flex justify-center gap-2">
