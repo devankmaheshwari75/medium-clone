@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SignupInput } from "@devank75/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "../../config.ts";
-import { useRecoilValue, useRecoilState } from "recoil";
+import {  useRecoilState } from "recoil";
 import { fullName } from "../store/atoms/fullName.tsx";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {

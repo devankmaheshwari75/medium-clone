@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { searchQuery } from "../store/atoms/searchquery"
 
 import { useNavigate } from "react-router-dom";
-import { Avatar } from "./Avatar";
+
 import { useRecoilValue } from "recoil";
 import { fullName } from "../store/atoms/fullName";
 
